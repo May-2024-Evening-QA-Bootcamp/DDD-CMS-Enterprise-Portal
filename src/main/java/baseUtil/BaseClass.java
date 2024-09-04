@@ -21,6 +21,7 @@ import com.aventstack.extentreports.Status;
 import common.CommonActions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.HomePage;
+import pages.NewUserRegistration;
 import reports.ExtentReportManager;
 import reports.TestManager;
 import utils.Configuration;
@@ -34,6 +35,7 @@ public class BaseClass {
 	ExtentReports extentReports;
 	ExtentTest extentTest;
 	String browsername;
+	public NewUserRegistration newUserRegistration;
 	
 
 	@BeforeSuite
@@ -92,6 +94,7 @@ public class BaseClass {
 
 	public void initClass() {
 		homePage = new HomePage(driver);
+		newUserRegistration = new NewUserRegistration(driver);
 	}
 
 	@AfterMethod
