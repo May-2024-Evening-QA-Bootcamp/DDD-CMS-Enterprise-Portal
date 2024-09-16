@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <test thread-count="5" name="Test">
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+  <parameter name="browser" value="firefox" />
+	<test thread-count="5" name="Test">
+		<parameter name="userIdFieldText" value="FebruaryTDDFramework"></parameter>
+		<parameter name="passwordFieldText" value="Enthrall@2024"></parameter>
+		<parameter name="errorMsg" value="Invalid combination of User ID and Password. Enter valid User ID and Password and try again."></parameter>
+		<classes>
+			<class name="pagesTest.HomePageParameterizedTest" />
+		</classes>
+	</test>
+</suite>

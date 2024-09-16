@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <test thread-count="5" name="Test">
-  </test> <!-- Test -->
+<test name="ChromeTest">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="pages.HomePageTest" />
+		</classes>
+	</test>
+	<test name="EdgeTest">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="pages.HomePageTest" />
+		</classes>
+	</test>
+	<test name="FireFoxTest">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="pages.HomePageTest" />
+		</classes>
+	</test>
+	<test name="SafariTest">
+		<parameter name="browser" value="safari" />
+		<classes>
+			<class name="pages.HomePageTest" />
+		</classes>
+	</test>
 </suite> <!-- Suite -->
