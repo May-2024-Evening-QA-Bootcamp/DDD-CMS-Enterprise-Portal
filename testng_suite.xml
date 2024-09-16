@@ -3,11 +3,16 @@
 <suite name="testng_suite">
 	<parameter name="browser" value="firefox" />
 	<test thread-count="5" name="Test">
+		<!-- group fails have to work on it-->
+		<groups>
+			<run>
+				<include name="smokeTest"></include>
+			</run>
+		</groups>
+		
 		<classes>
-			<!-- <class name="pages.HomePageTest" /> -->
-			<class name="pages.NewUserRegistrationTest"/>
+			<class name="pagesTest.NewUserRegistrationTest" />
 		</classes>
 	</test>
-</suite>
-<!-- To create this Test Suit: Project .... Right click .... TestNG .... Covert To TestNG -->
+</suite><!-- To create this Test Suit: Project .... Right click .... TestNG .... Covert To TestNG -->
 <!-- When we use Test Suit, we don't have relation with browser of config.properties file -->

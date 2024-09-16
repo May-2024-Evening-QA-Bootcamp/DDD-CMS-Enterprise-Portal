@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -34,7 +35,6 @@ public class BaseClass {
 	Configuration configuration;
 	ExtentReports extentReports;
 	ExtentTest extentTest;
-	String browsername;
 	public NewUserRegistration newUserRegistration;
 	
 
@@ -54,8 +54,9 @@ public class BaseClass {
 		extentTest.assignCategory(method.getDeclaringClass().getName());
 	}
 	
+	@Parameters("browser")
 	@BeforeMethod
-	public void setUp(@Optional(CHROME) String browserName) {	
+	public void setUp(@Optional(FIREFOX) String browserName) {	
 		initDriver(browserName);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
@@ -66,6 +67,16 @@ public class BaseClass {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitlyWait));
 		initClass();
 	}
+	
+	// TODO: Need to check again
+	// If any reason, in our test suit, parameter value is absent, 
+	// then default will work
+	
+	// spelling mistake in testng.xml suite, then browser will not match and get the default one
+	// WebdriverManager is instantiating the EdgeDriver
+		
+	// If we run from TestClass, which browser will run?
+	// Chrome, why? browser is absent in config.properties file, so it is taking from @Optional
  
 	public void initDriver(String browserName) {
 		switch (browserName) {
@@ -85,8 +96,8 @@ public class BaseClass {
 			break;
 
 		default:
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
 			break;
 		}
 

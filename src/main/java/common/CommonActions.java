@@ -183,11 +183,11 @@ public class CommonActions {
 		}
 	}
 	
-	public static void selectDropdown(WebElement element, String value) {
+	public static void selectDropdown(WebElement element, String visibleText) {
 		try {
 			Select select = new Select(element);
-			select.selectByVisibleText(value);
-			Loggers.logTheTest(value + " has been selected from the dropdown of ---> " + element);
+			select.selectByVisibleText(visibleText);
+			Loggers.logTheTest(visibleText + " has been selected from the dropdown of ---> " + element);
 		} catch (NullPointerException | NoSuchElementException e) {
 			e.printStackTrace();
 			Loggers.logTheTest(element + " : This element Not Found");
@@ -251,7 +251,7 @@ public class CommonActions {
 		Loggers.logTheTest("JavascriptExecutor executing ..." + script + " to input Text on element ---> " + element);
 	}
 	
-	public static void scrollIntoViewTheElementUsingJavascriptExecutor(WebDriver driver, WebElement element) {
+	public static void scrollIntoViewToTheElementUsingJavascriptExecutor(WebDriver driver, WebElement element) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", element);
 		Loggers.logTheTest("JavascriptExecutor executing ..." + " arguments[0].scrollIntoView(true)" + " to input Text on element ---> " + element);
 	}	
@@ -259,21 +259,22 @@ public class CommonActions {
 	// Attribute is coming from package constants, we will check the outcome later
 	// Why String type see next method
 	public static String getAttributeValue(WebElement element, Attribute attribute) {
+		String value = null;
 		try {
 			String atr = attribute.getTheAttribute();
-			String value = element.getAttribute(atr);
+			value = element.getAttribute(atr);
 			Loggers.logTheTest("Value for the attribute \"" + attribute + "\" in the WebElement " + element + " is executed and receive --> " + value);
 		} catch (NoSuchElementException | NullPointerException e) {
 			e.printStackTrace();
 			Loggers.logTheTest(element + "<----------> has not been found\n" + e.getMessage() );
 			Assert.fail();
 		}
-		return null;		
+		return value;		
 	}
 	
 	public static void verifyLengthOfTheFieldContent (WebElement element, Attribute attribute, String expectedLength) {
 		try {
-			String actualLength = getAttributeValue(element, attribute);
+			String actualLength = getAttributeValue(element, Attribute.MAX_LENGTH);
 			Loggers.logTheTest("The field " + element + " ---> has Actual Length : " + actualLength + "and Expected Length : " + expectedLength);
 			Assert.assertEquals(actualLength, expectedLength, "Length doesn't match");
 		} catch (NoSuchElementException | NullPointerException e) {
@@ -298,7 +299,7 @@ public class CommonActions {
 	public static void verifyErrorMessageTopOfThePage (WebElement element, Attribute attribute, String expectedErrorMessage) {
 		try {
 			String actualErrorMessage = getAttributeValue(element, attribute) + " is a required field.";
-			Loggers.logTheTest("The Web Element " + element + " ---> has Actual Error Message : " + actualErrorMessage + "and Expected Error Message : " + expectedErrorMessage);
+			Loggers.logTheTest("The Web Element " + element + " ---> has Actual Error Message : " + actualErrorMessage + " and Expected Error Message : " + expectedErrorMessage);
 			Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error Message doesn't match");
 		} catch (NoSuchElementException | NullPointerException e) {
 			e.printStackTrace();
@@ -306,6 +307,18 @@ public class CommonActions {
 			Assert.fail();
 		}
 	}
+	
+	// The below is called Java doc [document]
+	
+	/**
+	 * 
+	 * This method move to the child window after clicking the element on parent window
+	 * 
+	 * @param driver
+	 * @param element
+	 * 	
+	 * 
+	 */
 	
 	public static void switchToChildWindow(WebDriver driver, WebElement element) {
 		try {
@@ -324,6 +337,17 @@ public class CommonActions {
 		}
 	}
 	
+	/**
+	 * This method is used to upload any photo Image in a field by providing below as parameter
+	 * 
+	 * @param element
+	 * @param location
+	 */
+	public static void uploadPhotoImage(WebElement element, String location) {
+		File file = new File(location);	
+		element.sendKeys(file.getAbsolutePath());
+		pause(4000);		
+	}	
 	
 	// very very important interview question
 	public static String getSreenShot(String testName, WebDriver driver) {
@@ -349,13 +373,5 @@ public class CommonActions {
 		}
 		return targetFile.getAbsolutePath();
 	}
-
-				
-	
-	
-	
-	
-	
-	
 
 }
