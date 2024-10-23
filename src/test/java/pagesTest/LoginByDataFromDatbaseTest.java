@@ -44,10 +44,6 @@ public class LoginByDataFromDatbaseTest extends BaseClass {
 		
 	}
 	
-	
-	
-	
-	
-	
+	// Next class we will retrieve data from excel sheet	
 	
 }
