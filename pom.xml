@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>may2024.gov.cms.portal</groupId>
-  <artifactId>may2024.gov.cms.portal</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>CMS Portal Framework</name>
-  <description>This framework is about Portal of Center for Medicare and  Medicaid services</description>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>may2024.gov.cms.portal</groupId>
+	<artifactId>may2024.gov.cms.portal</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>CMS Portal Framework</name>
+	<description>This framework is about Portal of Center for Medicare and  Medicaid services</description>
 
-<dependencies>
+	<dependencies>
 		<!-- Selenium Java dependency is used to get access of Java based selenium -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -43,6 +43,20 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>2.0.7</version>
+		</dependency>
+
+		<!-- This is a JDBC connector, Connect our framework with PostgreSQL -->
+		<!-- pgadmin is a tool, postgresql is a structural database-->
+		<!-- for Oracle sql developer below one-->
+		<!-- https://mvnrepository.com/artifact/ojdbc/ojdbc-->
+		<!-- for MySQL below one-->
+		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j-->
+		<!-- for MongoDB below one-->
+		<!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-sync-->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.4</version>
 		</dependency>
 	</dependencies>
 
