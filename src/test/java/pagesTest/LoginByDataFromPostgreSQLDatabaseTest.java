@@ -10,7 +10,7 @@ import baseUtil.BaseClass;
 import dataTestObject.User;
 import queries.UserQueries;
 
-public class LoginByDataFromDatbaseTest extends BaseClass {
+public class LoginByDataFromPostgreSQLDatabaseTest extends BaseClass {
 
 	@DataProvider(name = "users_obj")
 	// Why we use Object?
